@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/dylan/Documents/code 資料/C/練習",
+      "program": "/Users/dylan/Documents/code 資料/C/練習/build/Debug/outDebug"
+    }
+  ]
+}
