@@ -1,66 +1,40 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
-# 目標可執行文件
-TARGETS = hello_world data_types conditions loops basic_functions \
-          recursion arrays pointers string_basics structure_basics \
-          file_operations dynamic_memory preprocessor \
-          multi_file_program
+# 源碼目錄
+SRC_DIR = src
+BIN_DIR = bin
 
-# 默認目標
-all: $(TARGETS)
+# 自動尋找所有C文件
+C_FILES = $(shell find $(SRC_DIR) -type f -name "*.c")
+TARGETS = $(patsubst $(SRC_DIR)/%.c,$(BIN_DIR)/%,$(C_FILES))
 
-# 基本程式
-hello_world: hello_world.c
-	$(CC) $(CFLAGS) -o $@ $<
+# 主目標
+all: directories $(TARGETS) run_menu
 
-data_types: data_types.c
-	$(CC) $(CFLAGS) -o $@ $<
+# 創建必要的目錄
+directories:
+	@mkdir -p $(BIN_DIR)
+	@mkdir -p $(BIN_DIR)/basics
+	@mkdir -p $(BIN_DIR)/control_flow
+	@mkdir -p $(BIN_DIR)/functions
+	@mkdir -p $(BIN_DIR)/arrays_pointers
+	@mkdir -p $(BIN_DIR)/strings
+	@mkdir -p $(BIN_DIR)/structures
+	@mkdir -p $(BIN_DIR)/file_io
+	@mkdir -p $(BIN_DIR)/memory
+	@mkdir -p $(BIN_DIR)/preprocessor
+	@mkdir -p $(BIN_DIR)/multi_file
 
-# 控制流程
-conditions: conditions.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-loops: loops.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-# 函數
-basic_functions: basic_functions.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-recursion: recursion.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-# 陣列與指標
-arrays: arrays.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-pointers: pointers.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-# 字串處理
-string_basics: string_basics.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-# 結構體
-structure_basics: structure_basics.c
-	$(CC) $(CFLAGS) -o $@ $< -lm
-
-# 檔案操作
-file_operations: file_operations.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-# 動態記憶體
-dynamic_memory: dynamic_memory.c
-	$(CC) $(CFLAGS) -o $@ $< -lm
-
-# 預處理器
-preprocessor: preprocessor.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-# 多文件程式 (特殊處理)
-multi_file_program: multi_file_main.c calculator.c utils.c
+# 多文件程式特殊處理
+$(BIN_DIR)/multi_file/multi_file_program: $(SRC_DIR)/multi_file/multi_file_main.c $(SRC_DIR)/multi_file/calculator.c $(SRC_DIR)/multi_file/utils.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -o $@ $^
+
+# 通用編譯規則
+$(BIN_DIR)/%: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -o $@ $<
 
 # 選單程式
 run_menu: run_menu.c
@@ -72,18 +46,20 @@ menu: run_menu
 
 # 清理編譯產物
 clean:
-	rm -f $(TARGETS) run_menu
+	rm -rf $(BIN_DIR)
+	rm -f run_menu
 
 # 特定目標幫助
 help:
 	@echo "使用方法:"
 	@echo "  make          - 編譯所有程式"
-	@echo "  make hello_world - 編譯特定程式"
-	@echo "  make clean    - 清理所有編譯產物"
 	@echo "  make menu     - 編譯並執行選單程式"
+	@echo "  make clean    - 清理所有編譯產物"
 	@echo "  make help     - 顯示此幫助訊息"
-	@echo ""
-	@echo "可用的目標:"
-	@echo "  $(TARGETS) run_menu"
 
-.PHONY: all clean help menu
+# 列出所有可執行文件
+list:
+	@echo "可執行文件列表:"
+	@find $(BIN_DIR) -type f -executable | sort
+
+.PHONY: all clean help menu list directories
