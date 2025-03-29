@@ -2,83 +2,85 @@
 
 這個專案包含從基礎到進階的C語言程式設計練習，每個練習都是獨立的C檔案，可以單獨編譯執行並查看結果。適合C語言學習者參考使用。
 
-## 目錄結構
+## 快速開始
 
-```
-c-programming-exercises/
-├── 01-basics/
-│   ├── hello_world.c          # 基本的Hello World程式
-│   └── data_types.c           # 基本數據類型與變數
-├── 02-control-flow/
-│   ├── conditions.c           # 條件語句
-│   └── loops.c                # 循環結構
-├── 03-functions/
-│   ├── basic_functions.c      # 函數基礎
-│   └── recursion.c            # 遞迴函數
-├── 04-arrays-pointers/
-│   ├── arrays.c               # 陣列基礎
-│   └── pointers.c             # 指標基礎
-├── 05-strings/
-│   └── string_basics.c        # 字串處理基礎
-├── 06-structures/
-│   └── structure_basics.c     # 結構體基礎
-├── 07-file-io/
-│   └── file_operations.c      # 檔案操作
-└── 08-advanced/
-    └── dynamic_memory.c       # 動態記憶體管理
-```
+為了方便編譯和執行專案中的C程式，您可以使用提供的選單系統：
 
-## 編譯與執行
+1. 編譯選單程式：
+   ```
+   gcc -o run_menu run_menu.c
+   ```
+
+2. 執行選單程式：
+   ```
+   ./run_menu
+   ```
+
+3. 從選單中選擇您想執行的C程式。選單系統會自動編譯、執行，並清理生成的可執行檔。
+
+## 專案內容
+
+### 基礎部分
+- `hello_world.c` - 最基本的C程式，演示如何輸出文字到屏幕
+- `data_types.c` - 展示C語言中的基本數據類型、變數和運算
+
+### 控制流程
+- `conditions.c` - 演示C語言中的條件語句，包括if-else、switch和三元運算符
+- `loops.c` - 演示C語言中的循環結構，包括for、while和do-while循環
+
+### 函數
+- `basic_functions.c` - 演示C語言中函數的基本用法，包括函數聲明、定義和調用
+- `recursion.c` - 演示C語言中遞迴函數的使用，包括階乘、斐波那契數列、最大公約數等
+
+### 陣列與指標
+- `arrays.c` - 展示C語言中陣列的基本操作，包括一維和二維陣列的使用
+- `pointers.c` - 演示C語言中指標的基本概念和操作
+
+### 字串處理
+- `string_basics.c` - 演示C語言中字串的基本操作，包括字串的宣告、操作與處理
+
+### 結構體與檔案操作
+- `structure_basics.c` - 演示C語言中結構體的基本使用
+- `file_operations.c` - 演示C語言中檔案的基本輸入輸出操作
+
+### 進階主題
+- `dynamic_memory.c` - 演示C語言中動態記憶體分配和管理
+- `preprocessor.c` - 展示C語言預處理器的使用
+
+### 工具
+- `run_menu.c` - 一個方便的選單系統，用於編譯和執行專案中的C程式
+
+## 學習建議
+
+1. **基礎學習**：先從`hello_world.c`和`data_types.c`開始，理解C語言的基本語法和數據類型。
+
+2. **控制流程**：學習`conditions.c`和`loops.c`，掌握條件判斷和循環結構。
+
+3. **函數與遞迴**：通過`basic_functions.c`和`recursion.c`學習函數的定義和使用，以及遞迴的概念。
+
+4. **陣列與指標**：`arrays.c`和`pointers.c`將幫助您理解C語言中非常重要的陣列和指標概念。
+
+5. **進階主題**：最後探索結構體、檔案操作和動態記憶體分配等進階主題。
+
+## 編譯和執行
+
+每個C檔案頂部的註釋包含了編譯和執行的指令。一般來說，編譯和執行一個C程式的步驟如下：
 
 ### 在Linux/macOS系統:
-
-1. 開啟終端機
-2. 進入到包含C檔案的目錄
-   ```
-   cd c-programming-exercises/01-basics
-   ```
-3. 使用gcc編譯程式
-   ```
-   gcc -o hello_world hello_world.c
-   ```
-4. 執行編譯後的程式
-   ```
-   ./hello_world
-   ```
+```
+gcc -o 程式名稱 源檔案.c
+./程式名稱
+```
 
 ### 在Windows系統:
-
-1. 開啟命令提示字元或PowerShell
-2. 進入到包含C檔案的目錄
-   ```
-   cd c-programming-exercises\01-basics
-   ```
-3. 使用gcc編譯程式
-   ```
-   gcc -o hello_world.exe hello_world.c
-   ```
-4. 執行編譯後的程式
-   ```
-   hello_world.exe
-   ```
-
-## 練習說明
-
-每個C檔案頂部都包含註釋，說明了該練習的目的和內容。運行程式後，將顯示相應的輸出結果，幫助理解C語言的相關概念。
-
-## 學習進度建議
-
-1. 從基礎部分開始，理解C語言的基本語法和數據類型
-2. 學習控制流程，包括條件語句和循環結構
-3. 理解函數的定義和使用，包括遞迴
-4. 掌握陣列和指標的概念和應用
-5. 學習字串處理技巧
-6. 理解結構體和聯合體
-7. 學習檔案輸入輸出操作
-8. 探索進階主題，如動態記憶體管理、多檔案程式設計等
+```
+gcc -o 程式名稱.exe 源檔案.c
+程式名稱.exe
+```
 
 ## 注意事項
 
 - 某些程式可能需要用戶輸入，請按提示操作
 - 某些程式使用了隨機數生成，因此每次運行結果可能不同
 - 編譯時如出現警告或錯誤，請檢查程式碼或環境設置
+- 本專案中的所有程式均為學習參考用途，代碼風格遵循常見的C語言規範
